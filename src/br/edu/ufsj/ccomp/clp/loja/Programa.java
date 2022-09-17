@@ -357,34 +357,29 @@ public class Programa {
 	
 	/* -----------xxxxxx--------------xxxxxxxxxx------- VENDAS --------xxxxxxxxxxxx---------------xxxxxxxxxxx----------- */
 	
-	public static void sale_insertion() {
+	public static Cliente check_client() {
 		
 		int i = 0;
 		boolean check = true;
-
-		System.out.println("Número:");
-		String number = Leitura.readLine();
-		
-		System.out.println("Data:");
-		String date = Data.LeituraData();
 		
 		System.out.println("Informe o RG do cliente:");
 		String rg = Leitura.readLine();
 		
 		// Caso em que já existe um cliente cadastrado
 		for (Cliente client : clients) {
-			
+					
 			if (client.get_rg().equals(rg)) {
 				i = clients.indexOf(client);
 				check = false;
 				break;
 			}
 		}
-		
+				
 		// Caso em que não existe um cliente cadastrado -> É necessário inserí-lo
 		if (check) {
+			System.out.println("Não existe cadastro com este RG! É necessário efetuá-lo.");
 			client_insertion();
-			
+					
 			for (Cliente client : clients) {
 				if (client.get_rg().equals(rg)) {
 					i = clients.indexOf(client);
@@ -392,14 +387,70 @@ public class Programa {
 				}
 			}
 		}
+				
+		return clients.get(i);
+	}
+	
+	public static Produto check_product() {
 		
-		Cliente client = clients.get(i);
+		int i = 0;
+		boolean check = true;
 		
+		System.out.println("Informe o código do produto:");
+		String code = Leitura.readLine();
 		
+		// Caso em que já existe o produto cadastrado
+		for (Produto product: products) {
+							
+			if (product.get_code() == Integer.parseInt(code)) {
+				i = products.indexOf(product);
+				check = false;
+				break;
+			}
+		}
+						
+		// Caso em que não existe o produto cadastrado
+		if (check) 
+			System.out.println("Não existe produto com este código! É necessário efetuá-lo.");
+		
+		return products.get(i);
+					
+	}
+	
+	public static void sale_insertion() {
+		
+		int finalize = 0;
+		List<ItemVenda> itens = new ArrayList<ItemVenda>();
+
+		System.out.println("Número:");
+		String number = Leitura.readLine();
+		
+		System.out.println("Data:");
+		String date = Data.LeituraData();
+		
+		Cliente client = check_client();
+		
+		do {
+			
+			System.out.println("\nADICIONE SEUS ITENS");
+			
+			Produto product = check_product();
+			
+			System.out.println("Informe a quantidade:");
+			String quantity = Leitura.readLine();
+			
+			ItemVenda item = new ItemVenda(product, product.get_value(), Integer.parseInt(quantity));
+			itens.add(item);
+			
+			System.out.println("Deseja finalizar? Digite 0!");
+			finalize = Integer.parseInt(Leitura.readLine());
+			
+		} while (finalize != 0);
 		
 		try {
-			Venda sale = new Venda(number, date, client, );
+			Venda sale = new Venda(Integer.parseInt(number), date, client, itens);
 			sales.add(sale);
+			System.out.println(sale.total());
 		} catch (DataException e) {
 			System.out.println("A data informada ainda não ocorreu ---> " + date);
 		}
