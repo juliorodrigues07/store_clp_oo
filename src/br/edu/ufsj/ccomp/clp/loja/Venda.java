@@ -2,7 +2,6 @@ package br.edu.ufsj.ccomp.clp.loja;
 
 import br.edu.ufsj.ccomp.clp.exceptions.DataException;
 import br.edu.ufsj.ccomp.clp.util.Data;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Venda implements Totalizavel{
@@ -21,19 +20,35 @@ public class Venda implements Totalizavel{
 		
 		this.number = number;
 		this.cliente = cliente;
-		this.itens = new ArrayList<ItemVenda>();
+		this.itens = itens;
 	}
 	
 	@Override
 	public Float total() {
 		
+		float sum = 0;
+		
+		for (ItemVenda item : this.itens) {
+			sum += item.total();
+		}
+		
+		return sum;
 	}
 	
 	public Integer get_number() {
 		return this.number;
 	}
 	
+	public List<ItemVenda> get_itens() {
+		return this.itens;
+	}
+	
 	public String visualize() {
-		return " Número: " + this.number + "\t Data: " + this.date + "\t Cliente: " + this.cliente.visualize() + "\n";
+		
+		for (ItemVenda item : this.itens) {
+			System.out.println("ITENS");
+			System.out.println(item.visualize());
+		}
+		return " Número da venda: " + this.number + "\t Data: " + this.date + "\t Cliente: " + this.cliente.visualize();
 	}
 }
