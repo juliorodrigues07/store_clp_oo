@@ -34,7 +34,7 @@ public class Cliente extends Pessoa{
 	
 	@Override
 	public String visualize() {
-		return super.visualize() + "\t RG: " + this.rg + "\t Data de Nascimento: " + this.birth_date + "\n";
+		return super.visualize() + "\t RG: " + this.rg + "\t Data de Nascimento: " + this.birth_date;
 	}
 	
 	public String get_rg() {

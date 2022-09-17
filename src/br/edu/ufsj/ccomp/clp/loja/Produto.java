@@ -21,7 +21,7 @@ public class Produto {
 	}
 	
 	public String visualize() {
-		return " Código: " + this.code + "\t Nome: " + this.name + "\t Valor: " + this.value + "\n";
+		return "Código: " + this.code + "\t Nome: " + this.name + "\t Valor: " + this.value;
 	}
 	
 	public Integer get_code() {

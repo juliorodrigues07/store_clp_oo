@@ -18,6 +18,6 @@ public class Pessoa {
 	}
 	
 	public String visualize() {
-		return "Nome: " + this.name + "\t Endereço: " + this.address;
+		return "\nNome: " + this.name + "\t Endereço: " + this.address;
 	}
 }

@@ -20,6 +20,6 @@ public class ItemVenda implements Totalizavel {
 	}
 	
 	public String visualize() {
-		return " Produto: " + this.product.visualize() + "\t Valor: " + this.value + "\t Quantidade: " + this.quantity; 
+		return "PRODUTO " + this.product.visualize() + "\nPARCIAL Valor: " + this.total() + "\t Quantidade: " + this.quantity + "\n"; 
 	}
 }

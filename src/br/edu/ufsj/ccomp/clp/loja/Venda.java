@@ -45,10 +45,11 @@ public class Venda implements Totalizavel{
 	
 	public String visualize() {
 		
-		for (ItemVenda item : this.itens) {
-			System.out.println("ITENS");
+		System.out.println("\nITENS\n");
+		
+		for (ItemVenda item : this.itens) 
 			System.out.println(item.visualize());
-		}
-		return " Número da venda: " + this.number + "\t Data: " + this.date + "\t Cliente: " + this.cliente.visualize();
+		
+		return "Número da venda: " + this.number + "\t Total: " + this.total() + "\t Data: " + this.date + "\n\nCLIENTE" + this.cliente.visualize();
 	}
 }
