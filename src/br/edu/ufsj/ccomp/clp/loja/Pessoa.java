@@ -1,6 +1,6 @@
 package br.edu.ufsj.ccomp.clp.loja;
 
-public class Pessoa {
+public abstract class Pessoa {
 	
 	private String name;
 	private String address;
