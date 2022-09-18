@@ -39,10 +39,6 @@ public class Venda implements Totalizavel{
 		return this.number;
 	}
 	
-	public List<ItemVenda> get_itens() {
-		return this.itens;
-	}
-	
 	public String visualize() {
 		
 		System.out.println("\nITENS\n");
